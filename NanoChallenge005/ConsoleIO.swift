@@ -22,7 +22,7 @@ protocol ConsoleWrite {
     func write(_ text: String, as type: WriteType)
 }
 
-class ConsoleIO: ConsoleRead, ConsoleWrite {
+class ConsoleIO: ConsoleRead {
     
     func read() -> String {
         guard let input = readLine() else {
@@ -39,11 +39,14 @@ class ConsoleIO: ConsoleRead, ConsoleWrite {
     }
     
     func readFloat() -> Float {
-        guard let num = Float(read()) else {
+        guard let num = Float(read().replacingOccurrences(of: ",", with: ".")) else {
             return -1
         }
         return num
     }
+}
+
+extension ConsoleIO: ConsoleWrite {
     
     func write(_ text: String, as type: WriteType = .normal) {
         switch type {

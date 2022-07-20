@@ -43,7 +43,7 @@ class Menu {
         var validacao = false
         
         while !validacao {
-            console.write("[1] - Voltar\n[2] - Adicionar aluno\n[3] - Adicionar aluno com nota\n[4] - Adicionar nota para aluno\n\n")
+            console.write("[1] - Voltar\n[2] - Adicionar aluno\n[3] - Adicionar aluno com nota\n[4] - Atribuir nota para aluno\n\n")
             
             console.write("Escolha: ")
             let escolha = console.readInt()
@@ -72,7 +72,7 @@ class Menu {
     
     func addColumnMenu() {
         
-        var validacao = false 
+        var validacao = false
         
         while !validacao {
             console.write("[1] - Voltar\n[2] - Adicionar coluna\n[3] - Media da coluna\n\n")

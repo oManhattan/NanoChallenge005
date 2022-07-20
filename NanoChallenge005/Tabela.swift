@@ -18,10 +18,10 @@ class Table {
     let console: ConsoleIO = .init()
     
     func addColumn(name header: String) {
-        columns.append(.init(header: header))
+        columns.append(.init(header: header.uppercased()))
         
         for student in students {
-            student.nota[header] = -1
+            student.nota[header.uppercased()] = -1
         }
     }
     
@@ -85,10 +85,13 @@ class Table {
             case 1:
                 validacao = true
             case _ where opcaoAluno.keys.contains(opcao):
-                console.write("\nNota pra o aluno: ")
-                let nota = console.readFloat()
-                validacao = nota >= 0 && nota <= 10
-                if validacao { opcaoAluno[opcao]?.nota[selectedColumn] = nota }
+                while !validacao {
+                    console.write("\nNota pra o aluno: ")
+                    let nota = console.readFloat()
+                    validacao = nota >= 0 && nota <= 10
+                    if validacao { opcaoAluno[opcao]?.nota[selectedColumn] = nota }
+                    else { console.write("Valor inválido.\n", as: .error) }
+                }
             default:
                 console.write("Valor inválido.", as: .error)
             }
